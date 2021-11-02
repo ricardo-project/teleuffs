@@ -1,0 +1,947 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <meta charset=UTF-8>
+    <meta http-equiv=X-UA-Compatible content="IE=edge">
+    <meta name=viewport content="width=device-width, initial-scale=1.0">
+    <link rel=stylesheet href="https://fonts.googleapis.com/css?family=Cormorant+Garamond|Open+Sans">
+    <title>Teleatendimento UFFS</title>
+</head>
+<style>
+    /*VARIÁVEIS CSS IMPORTANTES (criadas na pseudo-classe "root")!!!*/
+    :root {
+        --verde-azulado: rgb(26, 129, 56);
+        --verde-azulado2: #169164;
+        --verde-azulado3: #329a74;
+        --verde-normal: rgb(131,190,70);
+        --verde-normal-opaco: rgb(131,190,70,0.3);
+        --verde-normal2: #709c23;
+        --verde-levemente-escuro: rgb(85,134,21);
+        --verde-escuro: rgb(54,90,7);
+        --verde-dark: rgb(41, 66, 8);
+        --size-icon: 40px;
+        --compr-div-menu: calc(100% - 24px);
+    }
+    /*TODOS OS ELEMENTOS (e suas propriedades alteradas)*/
+    html, body {
+        height: 100%
+    } body {
+        overflow: hidden;
+        display: flex;
+        text-align: center;
+        user-select: none;
+        background: var(--verde-escuro)
+    } body, p {
+        margin: 0
+    } main {
+        font-family: Cormorant Garamond;
+        position: relative;
+        width: calc(100% - 100px);
+        height: 100%;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: rgb(33, 42, 35);
+    } main section {
+        position: absolute
+    } .titleSect {
+        font-size: 72px;
+        width: max-content;
+        filter: drop-shadow(rgb(0,0,0,0.4) 3px 3px 0px);
+    } .title {
+        background: var(--verde-normal-opaco) url("wave.png");
+        background-size: 240px 120px;
+        font-size: 90px;
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        animation: waveTitle 4s infinite linear;
+    } .title > b {
+        font-size: 0;
+        transition: font-size 0.5s ease
+    } .logo {
+        width: calc(100% - 16px);
+        height: 110px;
+        top: 0px;
+        padding: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        transition: all 0.3s ease
+    } .logo__img {
+        height: 0%;
+        filter: brightness(0.85) contrast(1.3) hue-rotate(-40deg) drop-shadow(rgb(0,0,0,0.4) 4px 4px 0px);
+        transition: all 0.8s ease
+    } .menu {
+        font-family: Open Sans;
+        display: -webkit-box;
+    } .menu__aba {
+        position: relative;
+        width: 20px;
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        background: rgb(70, 114, 12)
+    } .abaclick {
+        cursor: pointer
+    } .menu__aba svg {
+        position: absolute
+    } .svgseta {
+        left: -15px;
+        transition: all 0.45s ease
+    } .menu__opt {
+        display: -webkit-box;
+        background: var(--verde-escuro);
+        width: calc(100% - 20px);
+    } .menu__conj {
+        position: relative;
+        width: 100%;
+        margin: auto
+    } .menu__div {
+        display: -webkit-box;
+        overflow: hidden;
+        cursor: pointer;
+        border-bottom: 2px solid var(--verde-normal2);
+        top: 0px;
+        left: 0px;
+        margin: 15px auto;
+        position: relative;
+        transition: all 0.15s ease, width 0.4s cubic-bezier(.75,0,.25,1)
+    } .menu__div::shadow {
+        cursor: pointer
+    } .menu__div--lateral {
+        width: var(--compr-div-menu);
+    } .menu__div--celular {
+        width: 250px;
+    } .menu__divsvg {
+        width: 50px;
+        height: 50px;
+        position: relative;
+    } .menu__divsvg svg {
+        width: calc(100% + 8px);
+        height: calc(100% + 8px);
+        position: absolute;
+        bottom: 0px;
+        right: 0px;
+    } .menu__divsvg polygon {
+        cursor: pointer
+    } .botao {
+        fill: orange
+    } .threeD {
+        fill: orangered
+    } .menu__div div {
+        height: var(--size-icon);
+        padding: 8px;
+        display: -webkit-box;
+        margin: 0px auto;
+        transition: height 0.4s cubic-bezier(.75,0,.25,1)
+    } .menu__div p {
+        color: var(--verde-normal);
+        font-weight: bold;
+        width: max-content;
+        margin: auto 0px;
+        margin-left: 8px
+    } .menu__icon {
+        filter: invert(1);
+    } .menu__div--lateral .menu__icon {
+        width: var(--size-icon);
+        transition: width 0.4s cubic-bezier(.75,0,.25,1)
+    } .menu__item {
+        width: max-content;
+        margin: 10px auto;
+    } .iconMenuCelular {
+        width: 60px;
+        height: 60px;
+        right: 10px;
+        top: 10px;
+        filter: drop-shadow(rgb(0,0,0,0.2) 2px 2px 0px);
+        cursor: pointer;
+    } .barra {
+        position: absolute;
+        width: 60px;
+        height: 12px;
+        background: var(--verde-levemente-escuro);
+        transition: all 0.275s ease
+    } .barra--top {
+        top: 0px;
+    } .barra--middle {
+        top: 24px;
+    } .barra--bottom {
+        top: 48px;
+    } .bckUFFS {
+        width: 100%;
+        height: 100%;
+        background: url("uffs.jfif") no-repeat center;
+        filter: brightness(0.35) contrast(1.4) hue-rotate(-30deg) blur(5px);
+        background-size: cover
+    } .frase {
+        width: 100%;
+        height: 16px;
+        position: relative;
+        margin: 20px auto 0px;
+        overflow: hidden;
+        transition: width 0.6s ease-out
+    } .frase__p {
+        width: 0px;
+        height: 0%;
+        margin: 16px auto 0px;
+        font-size: 36px;
+        color: var(--verde-normal);
+        display: flex;
+        justify-content: center;
+        transition: margin-top 0.4s ease-out, font-size 0.5s ease
+    } .frase__p p {
+        width: max-content
+    } .menuCelular {
+        font-family: Open Sans;
+        width: 100%;
+        height: 100%;
+        background: var(--verde-escuro);
+        display: none
+    } .menuCelular article {
+        margin: auto;
+    } .pretoOpaco {
+        width: 100%;
+        height: 100%;
+        background: rgb(0,0,0,0.7);
+        left: -100%;
+        opacity: 0;
+        transition: opacity 0.4s cubic-bezier(.75,0,.25,1)
+    } .transit {
+        width: 100%;
+        height: 0px;
+        background: var(--verde-azulado2)
+    } .sectPrinc {
+        width: 100%;
+        height: 100%;
+        display: none;
+        background: var(--verde-dark)
+    } .logo__ini input {
+        display: none
+    } .logo input {
+        background: var(--verde-escuro);
+        color: var(--verde-normal);
+        font-family: Open Sans;
+        font-weight: bold;
+        font-size: 25px;
+        border: none;
+        padding: 10px;
+        border-radius: 30px;
+    } hr {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        border: none;
+        background: var(--verde-escuro);
+        transition: height 0.4s ease
+    } canvas {
+        position: relative;
+        background: linear-gradient(rgb(33, 42, 35, 0.5), rgb(16, 24, 18));
+    } @keyframes waveTitle {
+        from { background-position: 0px 8px }
+        to { background-position: 240px 8px }
+    } @keyframes waveTitle2 {
+        from { background-position: 0px 8px }
+        to { background-position: 240px 8px }
+    }
+    /* --- CSS RESPONSIVO --- */
+    @media (max-width: 620px) and (min-height: 620px) {
+        .titleSect {
+            width: min-content;
+            font-size: 130px
+        } .frase__p p {
+            width: 600px;
+            font-size: 46px
+        }
+    }
+    @media (min-width: 620px) and (min-height: 620px) {
+        .logo__ini {
+            height: 150px
+        }
+    }
+    /* REALTERAR O MENU PARA CELULAR */
+    @media (min-width: 0px) {
+        .iconMenuCelular {
+            display: block
+        } main {
+            width: 100%;
+            transition: none
+        } .menu {
+            display: none;
+            position: absolute;
+            width: 100%;
+            height: 100%
+        } .menu__aba {
+            display: none
+        } .menu__opt {
+            width: 100%;
+        }
+    }
+    /* REALTERAR O MENU PARA DESKTOP (LATERAL) */
+    @media (min-width: 800px) {
+        .iconMenuCelular {
+            display: none
+        } main {
+            width: calc(100% - 100px)
+        } .menu {
+            display: flex;
+            position: relative;
+            width: 100px;
+        } .menu__aba {
+            display: flex
+        } .menu__opt {
+            width: calc(100% - 20px)
+        }
+    }
+</style>
+<body>
+    <main>
+        <section class=bckUFFS></section>
+        <canvas class=bckIni></canvas>
+        <section class=titleSect>
+            <div class=title_div>
+                <p class=title></p>
+            </div>
+            <article class=frase>
+                <hr>
+                <div class=frase__p>
+                    <div>
+                        <p>Criando uma rede de integração entre pessoas...</p>
+                    </div>
+                </div>
+            </article>
+        </section>
+        <!--section class=menuCelular>
+            <article>
+                <div>
+                    <div class="menu__div menu__div--celular">
+                        <div><img draggable=false class=menu__icon src="about.png"><p>Sobre o projeto</p></div>
+                    </div>
+                </div>
+                <div>
+                    <div class="menu__div menu__div--celular">
+                        <div><img draggable=false class=menu__icon src="auth.png"><p>Entre com sua conta!</p></div>
+                    </div>
+                </div>
+                <div>
+                    <div class="menu__div menu__div--celular">
+                        <div><img draggable=false class=menu__icon src="lista.png"><p>Dados e formulários!</p></div>
+                    </div>
+                </div>
+            </article>
+        </section-->
+        <section class=sectPrinc>
+            <p>Sobre o que é</p>
+        </section>
+        <section class=sectPrinc>
+            <p>Autenticação</p>
+        </section>
+        <section class=sectPrinc>
+            <p>Formulários e dados</p>
+        </section>
+        <section class="logo logo__ini">
+            <img draggable=false src="uffs.png" class=logo__img>
+            <input type=button value="Acesse o site da UFFS">
+        </section>
+        <section class=iconMenuCelular>
+            <div class="barra barra--top"></div>
+            <div class="barra barra--middle"></div>
+            <div class="barra barra--bottom"></div>
+        </section>
+        <section class=transit></section>
+        <section class=pretoOpaco></section>
+    </main>
+    <section class=menu>
+        <article class=menu__aba>
+            <svg width=50 height=320 class=svgaba>
+                <polygon class=abaclick points="51,0 49.982,1 49.929,2 49.840,3 49.716,4 49.555,5 49.356,6 49.120,7 48.845,8 48.530,9 48.173,10 47.773,11 47.328,12 46.835,13 46.292,14 45.695,15 45.040,16 44.321,17 43.533,18 42.668,19 41.716,20 12.426,49.289 11.459,50.289 10.552,51.289 9.700,52.289 8.900,53.289 8.148,54.289 7.441,55.289 6.775,56.289 6.150,57.289 5.562,58.289 5.010,59.289 4.492,60.289 4.008,61.289 3.555,62.289 3.133,63.289 2.740,64.289 2.376,65.289 2.041,66.289 1.732,67.289 1.451,68.289 1.195,69.289 0.966,70.289 0.761,71.289 0.581,72.289 0.426,73.289 0.296,74.289 0.189,75.289 0.106,76.289 0.047,77.289 0.012,78.289 0.000,79.289 0.000,240.711 0.012,241.711 0.047,242.711 0.106,243.711 0.189,244.711 0.296,245.711 0.426,246.711 0.581,247.711 0.761,248.711 0.966,249.711 1.195,250.711 1.451,251.711 1.732,252.711 2.041,253.711 2.376,254.711 2.740,255.711 3.133,256.711 3.555,257.711 4.008,258.711 4.492,259.711 5.010,260.711 5.562,261.711 6.150,262.711 6.775,263.711 7.441,264.711 8.148,265.711 8.900,266.711 9.700,267.711 10.552,268.711 11.459,269.711 12.426,270.711 41.716,300 42.668,301 43.533,302 44.321,303 45.040,304 45.695,305 46.292,306 46.835,307 47.328,308 47.773,309 48.173,310 48.530,311 48.845,312 49.120,313 49.356,314 49.555,315 49.716,316 49.840,317 49.929,318 49.982,319 51,300" fill=rgb(54,90,7) />
+            </svg>
+            <svg width=20 height=40 class="abaclick svgseta">
+                <polygon points="20,0 0,20 20,40" fill=rgb(86,136,21) />
+            </svg>
+        </article>
+        <article class=menu__opt>
+            <div class=menu__conj>
+                <div class=menu__item>
+                    <div class=menu__divsvg>
+                        <svg>
+                            <polygon class=threeD />
+                            <polygon class=botao />
+                        </svg>
+                    </div>
+                </div>
+                <div class=menu__item>
+                    <div class=menu__divsvg>
+                        <svg>
+                            <polygon class=threeD />
+                            <polygon class=botao />
+                        </svg>
+                    </div>
+                </div>
+                <div class=menu__item>
+                    <div class=menu__divsvg>
+                        <svg>
+                            <polygon class=threeD />
+                            <polygon class=botao />
+                        </svg>
+                    </div>
+                </div>
+            </div>
+        </article>
+    </section>
+</body>
+<script>
+//document.addEventListener("DOMContentLoaded", () => {
+    /* --------------- */
+    /* --- FUNÇÕES --- */
+    /* --------------- */
+    
+    const changeVarCSS = (property, value) => {
+        html.style.setProperty("--" + property, value)
+    }
+    const aleat = (valor, add) => {
+        return Math.random()*valor + add
+    }
+    const positOrNeg = () => {
+        return Math.floor(Math.random()*2)*2 - 1
+    }
+    const showAud = (nome) => {
+        let aud = new Audio(nome + ".mp3")
+        aud.play()
+    }
+    const redimens = () => {
+        W = window.innerWidth
+        H = window.innerHeight
+    }
+    const reiniMenu = () => {
+        condMenu = false
+        menu.style.transition = "none"
+        main.style.transition = "none"
+    }
+    const closeMenu = () => {
+        changeVarCSS("size-icon", "40px")
+        changeVarCSS("compr-div-menu", "calc(100% - 24px)")
+        menu.style.width = "100px"
+        main.style.width = "calc(100% - 100px)"
+        bckOpaco.style.opacity = 0
+        setMenu = setTimeout(function() {
+            bckOpaco.style.left = "-100%"
+            reiniMenu()
+        }, 450)
+    }
+    const prepareMenuToMove = () => {
+        condMenu = true
+        menu.style.transition = "width 0.45s cubic-bezier(.75,0,.25,1)"
+        main.style.transition = "width 0.45s cubic-bezier(.75,0,.25,1)"
+    }
+    const cosRz = (fator) => {
+        let cos = Math.cos(pi*fator)
+        if(cos < 0) {
+            cos = -Math.pow(-cos, 2/3)
+        } else if(cos > 0) {
+            cos = Math.pow(cos, 2/3)
+        } return cos
+    }
+    const changeSizeSVGMenu = () => {
+        let cos = cosRz(numMoveMenu/45)
+        const compr = 50 + 150*(1 - cos)/2
+        const compr1 = compr + 8
+        const compr2 = 100 + 220*(1 - cos)/2
+        menu.style.width = compr2 + "px"
+        main.style.width = "calc(100% - " + compr2 + "px)"
+        loop(svgMenu, elem => {
+            elem.style.width = compr + "px"
+        });
+        loop(botaoMenu, elem => {
+            for(let i = 10; i < 20; i++) {
+                elem.points[i].x = (compr1 + 15*(Math.cos((180 - 9*i)*pi/180) - 1))
+            } elem.points[20].x = compr1
+        });
+        loop(threeDMenu, elem => {
+            elem.points[2].x = compr1
+            elem.points[3].x = compr1
+            elem.points[4].x = compr1 + 15*(r2/2 - 1)
+        })
+    }
+    const moveMenu = () => {
+        if(indSct == -1) {
+            if(!condMenu) {
+                condMenu = true
+                if(menu.style.width == "320px") {
+                    condOpenMenu = false
+                    bckOpaco.style.opacity = 0
+                    svgClick[1].style.transform = "rotateY(0deg)"
+                    setMenu = setInterval(function() {
+                        numMoveMenu--
+                        changeSizeSVGMenu()
+                        if(numMoveMenu == 0) {
+                            clearInterval(setMenu)
+                            bckOpaco.style.left = "-100%"
+                            condMenu = false
+                        }
+                    }, 10)
+                } else {
+                    condOpenMenu = true
+                    svgClick[1].style.transform = "rotateY(-180deg)"
+                    changeVarCSS("size-icon", "50px")
+                    changeVarCSS("compr-div-menu", "calc(100% - 40px)")
+                    bckOpaco.style.left = "0%"
+                    bckOpaco.style.opacity = 1
+                    setMenu = setInterval(function() {
+                        numMoveMenu++
+                        changeSizeSVGMenu()
+                        if(numMoveMenu == 45) {
+                            clearInterval(setMenu)
+                            reiniMenu()
+                        }
+                    }, 10)
+                }
+            }
+        }
+    }
+    const redimensElems = () => {
+        /*Redimensionar título e frase*/
+        if(W <= 620 && H >= 620) {
+            tSct.style.transform = "scale(" + W/660 + ")"
+        } else {
+            if(W >= 2*H) {
+                if(H < 435) {
+                    tSct.style.transform = "scale(" + H/435 + ")"
+                } else {
+                    tSct.style.transform = "scale(1)"
+                }
+            } else {
+                if(W < 870) {
+                    tSct.style.transform = "scale(" + W/870 + ")"
+                } else {
+                    tSct.style.transform = "scale(1)"
+                }
+            }
+        }
+    }
+    const sizeCnv = (funcao, funcao2) => {
+        cnv.width = W
+        cnv.height = H
+        drawRede(funcao, funcao2)
+        Want = W
+        Hant = H
+    }
+    const drawRede = (funct1, funct2) => {
+        funct1()
+        ctx.lineWidth = 1
+        for(let i = 0; i < points.length - 1; i++) {
+            for(let j = i + 1; j < points.length; j++) {
+                let dist = Math.hypot(points[i][0] - points[j][0], points[i][1] - points[j][1])
+                if(dist < 240) {
+                    ctx.strokeStyle = "rgb(80,115,35," + Math.pow(1 - dist/240, 2) + ")"
+                    ctx.beginPath()
+                    ctx.lineTo(points[i][0], points[i][1])
+                    ctx.lineTo(points[j][0], points[j][1])
+                    ctx.stroke()
+                }
+            }
+        } funct2()
+    }
+    const insertPointAndChange = (funcao) => {
+        ctx.fillStyle = "white"
+        points.forEach((e, i) => {
+            ctx.beginPath()
+            ctx.arc(e[0], e[1], 0.6, 0, 2*pi)
+            ctx.fill()
+            funcao(e, vPoints[i], i)
+        })
+    } /* --- Movimento linear dos pontos --- */
+    const moveLinear = (e, v) => {
+        e[0] += Math.cos(v[0])*v[1]
+        e[1] -= Math.sin(v[0])*v[1]
+        if(e[0] > W) {
+            e[0] -= W
+        } else if(e[0] < 0) {
+            e[0] += W
+        } if(e[1] > H) {
+            e[1] -= H
+        } else if(e[1] < 0) {
+            e[1] += H
+        }
+    } /* Movimento */
+    const moveLogCircle = (a, e, ang) => {
+        const dif = a[1] - a[0]
+        if(dif >= 1) {
+            const lnb = Math.log(a[2])
+            a[0]++
+            let newD = Math.log(vM*a[0]*lnb)/lnb
+            e[0] = cX + newD*Math.cos(ang)
+            e[1] = cY - newD*Math.sin(ang)
+        }
+    }
+    const showCrct = (ind) => {
+        crctTitle[ind].style.fontSize = "1em"
+        if(ind < crctTitle.length - 1) {
+            setTimeout(function() {
+                showCrct(ind + 1)
+            }, 90)
+        } else {
+            setTimeout(function() {
+                setFrase = setInterval(function() {
+                    indFrase++
+                    frase.style.height = (16 + pFrase.scrollHeight*(1 - Math.cos(pi*indFrase/30))/2) + "px"
+                    if(indFrase == 30) {
+                        frase.style.height = "min-content"
+                        hrFrase.style.height = "16px"
+                        clearInterval(setFrase)
+                    }
+                }, 10)
+            }, 400)
+        }
+    }
+    const gerarPontos = (quantNew) => {
+        for(let i = 1; i <= quantNew; i++) {
+            points.push([aleat(W, 0), aleat(H, 0)])
+            let angle = Math.floor(Math.random()*360)
+            let intens = aleat(0.9, 0.1)
+            angle *= pi/180
+            /*Valor do ângulo da trajetória retilínea do ponto e a intensidade da velocidade em pixels/segundo*/
+            vPoints.push([angle, intens])
+        }
+    }
+    const insertP = (vetor, elem) => {
+        loop(vetor, elem2 => {
+            let newp = elem.parentNode.createSVGPoint()
+            newp.x = elem2[0]
+            newp.y = elem2[1]
+            elem.points.appendItem(newp)
+        })
+    }
+    const vInsideCircle = (e, v, x) => {
+        let b = Math.pow(vM/v[1], 1/D)
+        let lnb = Math.log(b)
+        let ti = Math.pow(b, x)/(vM*lnb)
+        let tf = 1/(v[1]*lnb)
+        const dX = e[0] - cX
+        const dY = cY - e[1]
+        v[0] = Math.atan(dY/dX)
+        if(dX < 0) {
+            v[0] += pi
+        } else {
+            if(dY < 0) {
+                v[0] += 2*pi
+            }
+        }
+        return [ti, tf, b, v[0]]
+    }
+    /* --- OBSERVAÇÃO: As funções abaixo funcionam para QUALQUER TIPO DE LISTAS, seja Arrays, HTMLCollections, NodeLists, etc! --- */
+    const loop = (vetor, funcao) => {
+        for(let k = 0; k < vetor.length; k++) {
+            funcao(vetor[k], k)
+        }
+    }
+    const loopAndTerminate = (vetor, funcao) => {
+        for(let k = 0; k < vetor.length; k++) {
+            if(funcao(vetor[k], k)) {
+                return
+            }
+        }
+    }
+    
+    /* ----!!! --------------------- !!! --- */
+    /* --- !!! VARIÁVEIS IMPORTANTES !!! --- */
+    /* ----!!! --------------------- !!! --- */
+    const D = 90
+    const vM = 50
+    const pi = Math.PI //---> Constante de Arquimedes (Pi)
+    const r2 = Math.sqrt(2) //---> Constante de Pitágoras (raiz quadrada de dois)
+    const txtTitle = "Teleatendimento UFFS"
+    let html = document.querySelector("html")
+    let main = document.querySelector("main")
+    let menu = document.querySelector(".menu")
+    let divMenu = document.querySelectorAll(".menu__div")
+    let svgClick = menu.querySelectorAll(".abaclick")
+    let divOpt = menu.querySelector(".menu__opt")
+    let svgMenu = divOpt.querySelectorAll(".menu__divsvg")
+    let botaoMenu = divOpt.querySelectorAll(".menu__divsvg .botao")
+    let threeDMenu = divOpt.querySelectorAll(".menu__divsvg .threeD")
+    let tSct = document.querySelector(".titleSect")
+    let sctCelular = document.querySelector(".menuCelular")
+    let iconMenu = document.querySelector(".iconMenuCelular")
+    let barras = iconMenu.querySelectorAll(".barra")
+    let title = tSct.querySelector(".title")
+    let frase = tSct.querySelector(".frase")
+    let pFrase = frase.querySelector(".frase__p p")
+    let hrFrase = frase.querySelector("hr")
+    let bckOpaco = document.querySelector(".pretoOpaco")
+    let transit = document.querySelector(".transit")
+    let scts = document.querySelectorAll(".sectPrinc")
+    let indSct = -1
+    let crctTitle = new Array()
+    let indFrase = 0
+    let setFrase
+    svgClick[0].addEventListener("click", moveMenu)
+    svgClick[1].addEventListener("click", moveMenu)
+
+    /* --- LAÇO QUE MOSTRA OS BOTÕES 3D DO MENU PRINCIPAL --- */
+    loop(botaoMenu, (elem, index) => {
+        let numBotao = 0
+        let pontos = elem.points
+        let pontos2 = threeDMenu[index].points
+        let setBotao
+        let condEnter = false
+        const changePoints = () => {
+            const fator = 8*(1 - cosRz(numBotao/15))/2
+            /*Mudar polígono do botão*/
+            for(let i = 0; i < 20; i++) {
+                const f2 = Math.floor(i/10)
+                const ang = (180 + 10*(f2 - i))*pi/180
+                pontos[i].x = 23 + (20 + 150*condOpenMenu)*f2 + 15*Math.cos(ang) - fator
+                pontos[i].y = 23 - 15*Math.sin(ang) - fator
+            } const cmpr1 = 8 - fator
+            const cmpr2 = 58 - fator
+            pontos[20].x = cmpr2 + 150*condOpenMenu
+            pontos[20].y = cmpr2
+            pontos[21].x = cmpr1
+            pontos[21].y = cmpr2
+            /*Mudar polígono da lateral 3D*/
+            pontos2[0].x = cmpr1
+            pontos2[0].y = cmpr2
+            pontos2[4].x = 43 + 150*condOpenMenu + 15*r2/2 - fator
+            pontos2[4].y = 23 - 15*r2/2 - fator
+        }; const showBotao = () => {
+            if(!condMenu) {
+                clearInterval(setBotao)
+                if(numBotao !== 15) {
+                    if(numBotao == 0) {
+                        indSct++
+                    } setBotao = setInterval(function() {
+                        numBotao++
+                        changePoints()
+                        if(numBotao == 15) {
+                            clearInterval(setBotao)
+                        }
+                    }, 10)
+                }
+            } else {
+                condEnter = true
+            }
+        }; const lowerBotao = () => {
+            if(!condMenu && !condEnter) {
+                clearInterval(setBotao)
+                if(numBotao !== 0) {
+                    setBotao = setInterval(function() {
+                        numBotao--
+                        changePoints()
+                        if(numBotao == 0) {
+                            clearInterval(setBotao)
+                            indSct--
+                        }
+                    }, 10)
+                    return
+                } indSct--
+            } else if(condEnter) {
+                condEnter = false
+            }
+        }
+        elem.addEventListener("mouseenter", showBotao)
+        threeDMenu[index].addEventListener("mouseenter", showBotao)
+        elem.addEventListener("mouseleave", lowerBotao)
+        threeDMenu[index].addEventListener("mouseleave", lowerBotao)
+    })
+
+    /*Introdução do site*/
+    let Want
+    let Hant
+    let W
+    let H
+    let cnv = document.querySelector(".bckIni")
+    let ctx = cnv.getContext("2d")
+    let condMenu = false
+    let numMenu = 0
+    let setMenu
+    const den = 9000
+    let setDraw
+    let points = []
+    let vPoints = []
+    let quantPoint
+    let changeFunct = () => {
+        insertPointAndChange((e, v) => { moveLinear(e, v) })
+    }
+    let cX
+    let cY
+    let cXant
+    let cYant
+    let condChange = true
+    let moveFunct = () => {
+        cX = event.clientX
+        cY = event.clientY
+    }
+
+    /* -------------------------- */
+    /* --- ESQUEMA DO MENU!!! --- */
+    /* -------------------------- */
+    let condOpenMenu = false
+    let numMoveMenu = 0
+    const r0 = "rotate(0deg)"
+    iconMenu.addEventListener("click", function() {
+        if(!condOpenMenu) {
+            condOpenMenu = true
+            barras[0].style.top = "24px"
+            barras[2].style.top = "24px"
+            setTimeout(function() {
+                loop(barras, (elem, index) => {
+                    elem.style.height = "20px"
+                    elem.style.top = "20px"
+                    elem.style.transform = "rotate(" + 45*(1 - 2*Math.floor(index/2)) + "deg)"
+                })
+            }, 275)
+        } else {
+            condOpenMenu = false
+            loop(barras, elem => {
+                elem.style.top = "24px"
+                elem.style.height = "12px"
+                elem.style.transform = r0
+            }); setTimeout(function() {
+                barras[0].style.top = "0px"
+                barras[2].style.top = "48px"
+            }, 275)
+        }
+    })
+    let condTransit = true
+
+    /* --- PARTE DA CONSTRUÇÃO DOS POLÍGONOS DO MENU PRINCIPAL --- */
+
+    let coordBotao = []
+    let coord3D = new Array([8, 58], [8, 58], [58, 58])
+    for(let k = 180; k >= 90; k -= 10) {
+        const ang = k*pi/180
+        coordBotao.push([23 + 15*Math.cos(ang), 23 - 15*Math.sin(ang)])
+    } for(let k = 90; k >= 0; k -= 10) {
+        const ang = k*pi/180
+        coordBotao.push([43 + 15*Math.cos(ang), 23 - 15*Math.sin(k*pi/180)])
+    } coordBotao.push([58, 58])
+    coordBotao.push([8, 58])
+    coord3D.push([58, 38 - 15*r2])
+    coord3D.push([43 + 15*r2/2, 23 - 15*r2/2])
+    loop(botaoMenu, (elem, index) => {
+        insertP(coordBotao, elem)
+        insertP(coord3D, threeDMenu[index])
+    });
+
+    /* ---------------------------------- */
+    /* --- QUANDO A PÁGINA CARREGA... --- */
+    /* ---------------------------------- */
+    for(let k = 0; k < txtTitle.length; k++) {
+        let newB = document.createElement("b")
+        newB.innerHTML = txtTitle.charAt(k)
+        title.appendChild(newB)
+        crctTitle.push(newB)
+    }
+    setTimeout(function() {
+        showCrct(0)
+        document.querySelector(".logo__img").style.height = "100%"
+    }, 1000)
+    redimens()
+    redimensElems()
+    Want = window.innerWidth
+    Hant = window.innerHeight
+
+    gerarPontos(Math.floor(W*H/den))
+    sizeCnv(() => {}, changeFunct)
+    setInterval(function() {
+        drawRede(() => { ctx.clearRect(0, 0, W, H) }, changeFunct)
+    }, 40)
+
+    /* --------------------------- */
+    /* --- DINÂMICA DOS PONTOS --- */
+    /* --------------------------- */
+
+
+    /*main.addEventListener("mouseenter", function() {
+        moveFunct()
+        cXant = event.clientX
+        cYant = event.clientY
+        window.addEventListener("mousemove", moveFunct)
+        changeFunct = () => {
+            if(cX !== cXant || cY !== cYant) {
+                quantPoint = []
+                insertPointAndChange((e, v, i) => {
+                    let distMouse = Math.hypot(cX - e[0], cY - e[1])
+                    if(distMouse < D) {
+                        let data = vInsideCircle(e, v, distMouse)
+                        v[0] = data.pop()
+                        quantPoint.push(data)
+                        moveLogCircle(data, e, v[0])
+                    } else {
+                        quantPoint.push(0)
+                        moveLinear(e, v)
+                    }
+                });
+                cXant = cX
+                cYant = cY
+            } else {
+                insertPointAndChange((e, v, i) => {
+                    if(quantPoint[i] == 0) {
+                        moveLinear(e, v)
+                    } else {
+                        moveLogCircle(quantPoint[i], e, v[0])
+                    }
+                })
+            } ctx.fillStyle = "rgb(180,255,180,0.05)"
+            ctx.beginPath()
+            ctx.arc(cX, cY, 90, 0, 2*pi)
+            ctx.fill()
+        }
+    }); main.addEventListener("mouseleave", function() {
+        window.removeEventListener("mousemove", moveFunct)
+        changeFunct = () => {
+            insertPointAndChange((e, v) => { moveLinear(e, v) })
+        }
+    })
+
+    /*Quando o browser é redimensionado, verificar a quantidade de pontos no desenho da rede*/
+    window.addEventListener("resize", () => {
+        redimens()
+        redimensElems()
+        if(Want >= 800 && W < 800) {
+            main.style.cssText = ""
+        }
+        /*if(Want >= 800 && W < 800) {
+            if(condMenu) {
+                clearTimeout(setMenu)
+                reiniMenu()
+            } if(main.style.width !== "") {
+                main.style.width = "100%"
+                if(menu.style.width == "320px") {
+                    sctCelular.style.display = "-webkit-box"
+                    bckOpaco.style.display = "none"
+                }
+            } 
+        } else if(Want < 800 && W >= 800) {
+            const comprMenu = parseFloat(menu.style.width)
+            if(!isNaN(comprMenu)) {
+                main.style.width = "calc(100% - " + comprMenu + "px)"
+                if(comprMenu == 320) {
+                    sctCelular.style.display = "none"
+                    bckOpaco.style.display = "block"
+                }
+            }
+        }*/
+        sizeCnv(() => {
+            let newQuant = Math.floor(W*H/den)
+            const dif = points.length - newQuant
+            if(dif > 0) { //---> O tamanho do browser foi reduzido!
+                points.splice(newQuant, dif)
+                vPoints.splice(newQuant, dif)
+            } points.forEach(e => {
+                e[0] = W*e[0]/Want
+                e[1] = H*e[1]/Hant
+            })
+            if(dif < 0) { //---> O tamanho do browser foi aumentado!
+                gerarPontos(-dif)
+            }
+        }, () => {
+            insertPointAndChange(() => {})
+        })
+    })
+//})
+</script>
+</html>
